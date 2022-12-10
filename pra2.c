@@ -25,10 +25,6 @@ typedef struct{ float x;
                 float y;
               }PUNTO;
 
-typedef struct{ PUNTO ini;
-                PUNTO fin;
-                COLOR color;
-              }LINEA; 
 
 typedef struct{ PUNTO c;
                 float r;
@@ -39,13 +35,8 @@ void DibujarTexto(char *Texto, float x, float y);
 void circulos();
 void AsignaColor(COLOR c);
 void display(void);
-void Linea(LINEA L);
 void Circulo(CIRCULO ci);
-PUNTO PosRaton_Posplano(int x, int y);
-void TraslacionLinea(LINEA *L,float tx,float ty);
-void RotacionLinea(LINEA *L,float xr, float yr, float Theta);
 void Animar(void);
-void TeclasEspeciales(int tecla, int x, int y);
 const float pi=3.14159;
 
 float DeltaX;
@@ -114,7 +105,6 @@ void display(void)
    AsignaColor(BLANCO);
    Circulo(C1);
   }
-  
   if(C2.activo == 1){
    AsignaColor(BLANCO);
    Circulo(C2);
@@ -123,7 +113,6 @@ void display(void)
    AsignaColor(BLANCO);
    Circulo(C3);
   }
-  
   
   if(C4.activo == 1){
    AsignaColor(BLANCO);
@@ -153,11 +142,13 @@ void display(void)
    AsignaColor(BLANCO);
    Circulo(C10); 
   }
-    glFlush();
+glFlush();    
 }
 
 void Animar(void)
-{   if((time%150)==0)
+{  
+//----------------------------------------------------------------------------- 
+   if((time%150)==0)
     { C1.c.x+=DeltaX;
       C1.c.y+=DeltaY;
       if(C1.c.x+C1.r>10)
@@ -169,11 +160,52 @@ void Animar(void)
       if(C1.c.y-C1.r<-10)
          DeltaY*=-1; 
     }
-    if (((C1.c.x < C2.c.x + C2.r) && (C1.c.x > C2.c.x - C2.r)) || ((C1.c.x < C3.c.x + C3.r) && (C1.c.x > C3.c.x - C3.r)) || ((C1.c.x < C4.c.x + C4.r) && (C1.c.x > C4.c.x - C4.r)) || ((C1.c.x < C5.c.x + C5.r) && (C1.c.x > C5.c.x - C5.r)) || ((C1.c.x < C6.c.x + C6.r) && (C1.c.x > C6.c.x - C6.r)) || ((C1.c.x < C7.c.x + C7.r) && (C1.c.x > C7.c.x - C7.r)) || ((C1.c.x < C8.c.x + C8.r) && (C1.c.x > C8.c.x - C8.r)) || ((C1.c.x < C9.c.x + C9.r) && (C1.c.x > C9.c.x - C9.r)) || ((C1.c.x < C10.c.x + C10.r) && (C1.c.x > C10.c.x - C10.r))) {
-      if (((C1.c.y < C2.c.y + C2.r) && (C1.c.y > C2.c.y - C2.r)) || ((C1.c.y < C3.c.y + C3.r) && (C1.c.y > C3.c.y - C3.r)) || ((C1.c.y < C4.c.y + C4.r) && (C1.c.y > C4.c.y - C4.r)) || ((C1.c.y < C5.c.y + C5.r) && (C1.c.y > C5.c.y - C5.r)) || ((C1.c.y < C6.c.y + C6.r) && (C1.c.y > C6.c.y - C6.r)) || ((C1.c.y < C7.c.y + C7.r) && (C1.c.y > C7.c.y - C7.r)) || ((C1.c.y < C8.c.y + C8.r) && (C1.c.y > C8.c.y - C8.r)) || ((C1.c.y < C9.c.y + C9.r) && (C1.c.y > C9.c.y - C9.r)) || ((C1.c.y < C10.c.y + C10.r) && (C1.c.y > C10.c.y - C10.r))){
+    if ((C1.c.x < C2.c.x + C2.r) && (C1.c.x > C2.c.x - C2.r)){
+      if ((C1.c.y < C2.c.y + C2.r) && (C1.c.y > C2.c.y - C2.r)){
          C1.activo = 0;
-      }}
-
+      }
+   }
+   if((C1.c.x < C3.c.x + C3.r) && (C1.c.x > C3.c.x - C3.r)){
+      if((C1.c.y < C3.c.y + C3.r) && (C1.c.y > C3.c.y - C3.r)){
+         C1.activo=0;
+      }
+   }
+   if((C1.c.x < C4.c.x + C4.r) && (C1.c.x > C4.c.x - C4.r)){
+      if((C1.c.y < C4.c.y + C4.r) && (C1.c.y > C4.c.y - C4.r)){
+         C1.activo=0;
+      }
+   }
+   if((C1.c.x < C5.c.x + C5.r) && (C1.c.x > C5.c.x - C5.r)){
+      if((C1.c.y < C5.c.y + C5.r) && (C1.c.y > C5.c.x - C5.r)){
+         C1.activo=0;
+      }
+   }
+   if((C1.c.x < C6.c.x + C6.r) && (C1.c.x > C6.c.x - C6.r)){
+      if((C1.c.y < C6.c.y + C6.r) && (C1.c.y > C6.c.y - C6.r)){
+         C1.activo=0;
+      }
+   }
+   if((C1.c.x < C7.c.x + C7.r) && (C1.c.x > C7.c.x - C7.r)){
+      if((C1.c.y < C7.c.y + C7.r) && (C1.c.y > C7.c.y - C7.r)){
+         C1.activo=0;
+      }
+   }
+   if((C1.c.x < C8.c.x + C8.r) && (C1.c.x > C8.c.x - C8.r)){
+      if((C1.c.y < C8.c.y + C8.r) && (C1.c.y > C8.c.y - C8.r)){
+         C1.activo=0;
+      }
+   }
+   if((C1.c.x < C9.c.x + C9.r) && (C1.c.x > C9.c.x - C9.r)){
+      if((C1.c.y < C9.c.y + C9.r) && (C1.c.y > C9.c.y - C9.r)){
+         C1.activo=0;
+      }
+   }
+   if((C1.c.x < C10.c.x + C10.r) && (C1.c.x > C10.c.x - C10.r)){
+      if((C1.c.y < C10.c.y + C10.r) && (C1.c.y > C10.c.y - C10.r)){
+         C1.activo=0;
+      }
+   }
+//-----------------------------------------------------------------------------
   if((time%150)==0)
     { C2.c.x+=DeltaX2;
       C2.c.y+=DeltaY2;
@@ -185,14 +217,53 @@ void Animar(void)
          DeltaY2*=-1;
       if(C2.c.y-C2.r<-10)
          DeltaY2*=-1; 
-      
     }
-    if (((C2.c.x < C1.c.x + C1.r) && (C2.c.x > C1.c.x - C1.r))|| ((C2.c.x < C3.c.x + C3.r) && (C2.c.x > C3.c.x - C3.r)) || ((C2.c.x < C4.c.x + C4.r) && (C2.c.x > C4.c.x - C4.r)) || ((C2.c.x < C5.c.x + C5.r) && (C2.c.x > C5.c.x - C5.r)) || ((C2.c.x < C6.c.x + C6.r) && (C2.c.x > C6.c.x - C6.r)) || ((C2.c.x < C7.c.x + C7.r) && (C2.c.x > C7.c.x - C7.r)) || ((C2.c.x < C8.c.x + C8.r) && (C2.c.x > C8.c.x - C8.r)) || ((C2.c.x < C9.c.x + C9.r) && (C2.c.x > C9.c.x - C9.r)) || ((C2.c.x < C10.c.x + C10.r) && (C2.c.x > C10.c.x - C10.r))){
-      if (((C2.c.y < C1.c.y + C1.r) && (C2.c.y > C1.c.y - C1.r))|| ((C2.c.y < C3.c.y + C3.r) && (C2.c.y > C3.c.y - C3.r)) || ((C2.c.y < C4.c.y + C4.r) && (C2.c.y > C4.c.y - C4.r)) || ((C2.c.y < C5.c.y + C5.r) && (C2.c.y > C5.c.y - C5.r)) || ((C2.c.y < C6.c.y + C6.r) && (C2.c.y > C6.c.y - C6.r)) || ((C2.c.y < C7.c.y + C7.r) && (C2.c.y > C7.c.y - C7.r)) || ((C2.c.y < C8.c.y + C8.r) && (C2.c.y > C8.c.y - C8.r)) || ((C2.c.y < C9.c.y + C9.r) && (C2.c.y > C9.c.y - C9.r)) || ((C2.c.y < C10.c.y + C10.r) && (C2.c.y > C10.c.y - C10.r))){
+    if ((C2.c.x < C1.c.x + C1.r) && (C2.c.x > C1.c.x - C1.r)){
+      if ((C2.c.y < C1.c.y + C1.r) && (C2.c.y > C1.c.y - C1.r)){
          C2.activo=0;
       }
    }
-    
+   if((C2.c.x < C3.c.x + C3.r) && (C2.c.x > C3.c.x - C3.r)){
+      if((C2.c.y < C3.c.y + C3.r) && (C2.c.y > C3.c.y - C3.r)){
+         C2.activo=0;
+      }
+   }
+   if((C2.c.x < C4.c.x + C4.r) && (C2.c.x > C4.c.x - C4.r)){
+      if((C2.c.y < C4.c.y + C4.r) && (C2.c.y > C4.c.y - C4.r)){
+         C2.activo=0;
+      }
+   }
+   if((C2.c.x < C5.c.x + C5.r) && (C2.c.x > C5.c.x - C5.r)){
+      if((C2.c.y < C5.c.y + C5.r) && (C2.c.y > C5.c.y - C5.r)){
+         C2.activo=0;
+      }
+   }
+   if((C2.c.x < C6.c.x + C6.r) && (C2.c.x > C6.c.x - C6.r)){
+      if((C2.c.y < C6.c.y + C6.r) && (C2.c.y > C6.c.y - C6.r)){
+         C2.activo=0;
+      }
+   }
+   if((C2.c.x < C7.c.x + C7.r) && (C2.c.x > C7.c.x - C7.r)){
+      if((C2.c.y < C7.c.y + C7.r) && (C2.c.y > C7.c.y - C7.r)){
+         C2.activo=0;
+      }
+   }
+   if((C2.c.x < C8.c.x + C8.r) && (C2.c.x > C8.c.x - C8.r)){
+      if((C2.c.y < C8.c.y + C8.r) && (C2.c.y > C8.c.y - C8.r)){
+         C2.activo=0;
+      }
+   }
+   if((C2.c.x < C9.c.x + C9.r) && (C2.c.x > C9.c.x - C9.r)){
+      if((C2.c.y < C9.c.y + C9.r) && (C2.c.y > C9.c.y - C9.r)){
+         C2.activo=0;
+      }
+   }
+   if((C2.c.x < C10.c.x + C10.r) && (C2.c.x > C10.c.x - C10.r)){
+      if((C2.c.y < C10.c.y + C10.r) && (C2.c.y > C10.c.y - C10.r)){
+         C2.activo=0;
+      }
+   }
+//-----------------------------------------------------------------------------
   if((time%150)==0)
     { C3.c.x+=DeltaX3;
       C3.c.y+=DeltaY3;
@@ -205,11 +276,52 @@ void Animar(void)
       if(C3.c.y-C3.r<-10)
          DeltaY3*=-1; 
     }  
-    if (((C3.c.x < C1.c.x + C1.r) && (C3.c.x > C1.c.x - C1.r)) || ((C3.c.x < C2.c.x + C2.r) && (C3.c.x > C2.c.x - C2.r)) || ((C3.c.x < C4.c.x + C4.r) && (C3.c.x > C4.c.x - C4.r)) || ((C3.c.x < C5.c.x + C5.r) && (C3.c.x > C5.c.x - C5.r)) || ((C3.c.x < C6.c.x + C6.r) && (C3.c.x > C6.c.x - C6.r)) || ((C3.c.x < C7.c.x + C7.r) && (C3.c.x > C7.c.x - C7.r)) || ((C3.c.x < C8.c.x + C8.r) && (C3.c.x > C8.c.x - C8.r)) || ((C3.c.x < C9.c.x + C9.r) && (C3.c.x > C9.c.x - C9.r)) || ((C3.c.x < C10.c.x + C10.r) && (C3.c.x > C10.c.x - C10.r))){
-      if (((C3.c.y < C1.c.y + C1.r) && (C3.c.y > C1.c.y - C1.r)) || ((C3.c.y < C2.c.y + C2.r) && (C3.c.y > C2.c.y - C2.r)) || ((C3.c.y < C4.c.y + C4.r) && (C3.c.y > C4.c.y - C4.r)) || ((C3.c.y < C5.c.y + C5.r) && (C3.c.y > C5.c.y - C5.r)) || ((C3.c.y < C6.c.y + C6.r) && (C3.c.y > C6.c.y - C6.r)) || ((C3.c.y < C7.c.y + C7.r) && (C3.c.y > C7.c.y - C7.r)) || ((C3.c.y < C8.c.y + C8.r) && (C3.c.y > C8.c.y - C8.r)) || ((C3.c.y < C9.c.y + C9.r) && (C3.c.y > C9.c.y - C9.r)) || ((C3.c.y < C10.c.y + C10.r) && (C3.c.y > C10.c.y - C10.r))){
+    if ((C3.c.x < C1.c.x + C1.r) && (C3.c.x > C1.c.x - C1.r)){
+      if ((C3.c.y < C1.c.y + C1.r) && (C3.c.y > C1.c.y - C1.r)){
          C3.activo = 0;
       }
    }
+   if((C3.c.x < C2.c.x + C2.r) && (C3.c.x > C2.c.x - C2.r)){
+      if((C3.c.y < C2.c.y + C2.r) && (C3.c.y > C2.c.y - C2.r)){
+         C3.activo=0;
+      }
+   }
+   if((C3.c.x < C4.c.x + C4.r) && (C3.c.x > C4.c.x - C4.r)){
+      if((C3.c.y < C4.c.y + C4.r) && (C3.c.y > C4.c.y - C4.r)){
+         C3.activo=0;
+      }
+   }
+   if((C3.c.x < C5.c.x + C5.r) && (C3.c.x > C5.c.x - C5.r)){
+      if((C3.c.y < C5.c.y + C5.r) && (C3.c.y > C5.c.y - C5.r)){
+         C3.activo=0;
+      }
+   }
+   if((C3.c.x < C6.c.x + C6.r) && (C3.c.x > C6.c.x - C6.r)){
+      if((C3.c.y < C6.c.y + C6.r) && (C3.c.y > C6.c.y - C6.r)){
+         C3.activo=0;
+      }
+   }
+   if((C3.c.x < C7.c.x + C7.r) && (C3.c.x > C7.c.x - C7.r)){
+      if((C3.c.y < C7.c.y + C7.r) && (C3.c.y > C7.c.y - C7.r)){
+         C3.activo=0;
+      }
+   }
+   if((C3.c.x < C8.c.x + C8.r) && (C3.c.x > C8.c.x - C8.r)){
+      if((C3.c.y < C8.c.y + C8.r) && (C3.c.y > C8.c.y - C8.r)){
+         C3.activo=0;
+      }
+   }
+   if((C3.c.x < C9.c.x + C9.r) && (C3.c.x > C9.c.x - C9.r)){
+      if((C3.c.y < C9.c.y + C9.r) && (C3.c.y > C9.c.y - C9.r)){
+         C3.activo=0;
+      }
+   }
+   if((C3.c.x < C10.c.x + C10.r) && (C3.c.x > C10.c.x - C10.r)){
+      if((C3.c.y < C10.c.y + C10.r) && (C3.c.y > C10.c.y - C10.r)){
+         C3.activo=0;
+      }
+   }
+//-----------------------------------------------------------------------------
   if((time%150)==0)
     { C4.c.x+=DeltaX4;
       C4.c.y+=DeltaY4;
@@ -222,12 +334,53 @@ void Animar(void)
       if(C4.c.y-C4.r<-10)
          DeltaY4*=-1; 
     }
-    if (((C4.c.x < C1.c.x + C1.r) && (C4.c.x > C1.c.x - C1.r)) || ((C4.c.x < C2.c.x + C2.r) && (C4.c.x > C2.c.x - C2.r)) || ((C4.c.x < C3.c.x + C3.r) && (C4.c.x > C3.c.x - C3.r)) || ((C4.c.x < C5.c.x + C5.r) && (C4.c.x > C5.c.x - C5.r)) || ((C4.c.x < C6.c.x + C6.r) && (C4.c.x > C6.c.x - C6.r)) || ((C4.c.x < C7.c.x + C7.r) && (C4.c.x > C7.c.x - C7.r)) || ((C4.c.x < C8.c.x + C8.r) && (C4.c.x > C8.c.x - C8.r)) || ((C4.c.x < C9.c.x + C9.r) && (C4.c.x > C9.c.x - C9.r)) || ((C4.c.x < C10.c.x + C10.r) && (C4.c.x > C10.c.x - C10.r))){
-      if (((C4.c.y < C1.c.y + C1.r) && (C4.c.y > C1.c.y - C1.r)) || ((C4.c.y < C2.c.y + C2.r) && (C4.c.y > C2.c.y - C2.r)) || ((C4.c.y < C3.c.y + C3.r) && (C4.c.y > C3.c.y - C3.r)) || ((C4.c.y < C5.c.y + C5.r) && (C4.c.y > C5.c.y - C5.r)) || ((C4.c.y < C6.c.y + C6.r) && (C4.c.y > C6.c.y - C6.r)) || ((C4.c.y < C7.c.y + C7.r) && (C4.c.y > C7.c.y - C7.r)) || ((C4.c.y < C8.c.y + C8.r) && (C4.c.y > C8.c.y - C8.r)) || ((C4.c.y < C9.c.y + C9.r) && (C4.c.y > C9.c.y - C9.r)) || ((C4.c.y < C10.c.y + C10.r) && (C4.c.y > C10.c.y - C10.r))){
+    if ((C4.c.x < C1.c.x + C1.r) && (C4.c.x > C1.c.x - C1.r)) {
+      if ((C4.c.y < C1.c.y + C1.r) && (C4.c.y > C1.c.y - C1.r)){
          C4.activo = 0;
       }
    }
-  if((time%22)==0)
+   if((C4.c.x < C2.c.x + C2.r) && (C4.c.x > C2.c.x - C2.r)){
+      if((C4.c.y < C2.c.y + C2.r) && (C4.c.y > C2.c.y - C2.r)){
+         C4.activo=0;
+      }
+   }
+   if ((C4.c.x < C3.c.x + C3.r) && (C4.c.x > C3.c.x - C3.r)){
+      if((C4.c.y < C3.c.y + C3.r) && (C4.c.y > C3.c.y - C3.r)){
+         C4.activo=0;
+      }
+   }
+   if((C4.c.x < C5.c.x + C5.r) && (C4.c.x > C5.c.x - C5.r)){
+      if((C4.c.y < C5.c.y + C5.r) && (C4.c.y > C5.c.y - C5.r)){
+         C4.activo=0;
+      }
+   }
+   if((C4.c.x < C6.c.x + C6.r) && (C4.c.x > C6.c.x - C6.r)){
+      if((C4.c.y < C6.c.y + C6.r) && (C4.c.y > C6.c.y - C6.r)){
+         C4.activo=0;
+      }
+   }
+   if((C4.c.x < C7.c.x + C7.r) && (C4.c.x > C7.c.x - C7.r)){
+      if((C4.c.y < C7.c.y + C7.r) && (C4.c.y > C7.c.y - C7.r)){
+         C4.activo=0;
+      }
+   }
+   if((C4.c.x < C8.c.x + C8.r) && (C4.c.x > C8.c.x - C8.r)){
+      if((C4.c.y < C8.c.y + C8.r) && (C4.c.y > C8.c.y - C8.r)){
+         C4.activo=0;
+      }
+   }
+   if((C4.c.x < C9.c.x + C9.r) && (C4.c.x > C9.c.x - C9.r)){
+      if((C4.c.y < C9.c.y + C9.r) && (C4.c.y > C9.c.y - C9.r)){
+         C4.activo=0;
+      }
+   }
+   if((C4.c.x < C10.c.x + C10.r) && (C4.c.x > C10.c.x - C10.r)){
+      if((C4.c.y < C10.c.y + C10.r) && (C4.c.y > C10.c.y - C10.r)){
+         C4.activo=0;
+      }
+   }
+//-----------------------------------------------------------------------------
+  if((time%250)==0)
     { C5.c.x+=DeltaX5;
       C5.c.y+=DeltaY5;
       if(C5.c.x+C5.r>10)
@@ -239,12 +392,53 @@ void Animar(void)
       if(C5.c.y-C5.r<-10)
          DeltaY5*=-1; 
     }
-    if (((C5.c.x < C1.c.x + C1.r) && (C5.c.x > C1.c.x - C1.r)) || ((C5.c.x < C2.c.x + C2.r) && (C5.c.x > C2.c.x - C2.r)) || ((C5.c.x < C3.c.x + C3.r) && (C5.c.x > C3.c.x - C3.r)) || ((C5.c.x < C4.c.x + C4.r) && (C5.c.x > C4.c.x - C4.r)) || ((C5.c.x < C6.c.x + C6.r) && (C5.c.x > C6.c.x - C6.r)) || ((C5.c.x < C7.c.x + C7.r) && (C5.c.x > C7.c.x - C7.r)) || ((C5.c.x < C8.c.x + C8.r) && (C5.c.x > C8.c.x - C8.r)) || ((C5.c.x < C9.c.x + C9.r) && (C5.c.x > C9.c.x - C9.r)) || ((C5.c.x < C10.c.x + C10.r) && (C5.c.x > C10.c.x - C10.r))){
-      if (((C5.c.y < C1.c.y + C1.r) && (C5.c.y > C1.c.y - C1.r)) || ((C5.c.y < C2.c.y + C2.r) && (C5.c.y > C2.c.y - C2.r)) || ((C5.c.y < C3.c.y + C3.r) && (C5.c.y > C3.c.y - C3.r)) || ((C5.c.y < C4.c.y + C4.r) && (C5.c.y > C4.c.y - C4.r)) || ((C5.c.y < C6.c.y + C6.r) && (C5.c.y > C6.c.y - C6.r)) || ((C5.c.y < C7.c.y + C7.r) && (C5.c.y > C7.c.y - C7.r)) || ((C5.c.y < C8.c.y + C8.r) && (C5.c.y > C8.c.y - C8.r)) || ((C5.c.y < C9.c.y + C9.r) && (C5.c.y > C9.c.y - C9.r)) || ((C5.c.y < C10.c.y + C10.r) && (C5.c.y > C10.c.y - C10.r))){
+    if ((C5.c.x < C1.c.x + C1.r) && (C5.c.x > C1.c.x - C1.r)){
+      if ((C5.c.y < C1.c.y + C1.r) && (C5.c.y > C1.c.y - C1.r)){
          C5.activo = 0;
       }
    }
-  if((time%22)==0)
+   if((C5.c.x < C2.c.x + C2.r) && (C5.c.x > C2.c.x - C2.r)){
+      if((C5.c.y < C2.c.y + C2.r) && (C5.c.y > C2.c.y - C2.r)){
+         C5.activo=0;
+      }
+   }
+   if((C5.c.x < C3.c.x + C3.r) && (C5.c.x > C3.c.x - C3.r)){
+      if((C5.c.y < C3.c.y + C3.r) && (C5.c.y > C3.c.y - C3.r)){
+         C5.activo=0;
+      }
+   }
+   if((C5.c.x < C4.c.x + C4.r) && (C5.c.x > C4.c.x - C4.r)){
+      if((C5.c.y < C4.c.y + C4.r) && (C5.c.y > C4.c.y - C4.r)){
+         C5.activo=0;
+      }
+   }
+   if((C5.c.x < C6.c.x + C6.r) && (C5.c.x > C6.c.x - C6.r)){
+      if((C5.c.y < C6.c.y + C6.r) && (C5.c.y > C6.c.y - C6.r)){
+         C5.activo=0;
+      }
+   }
+   if((C5.c.x < C7.c.x + C7.r) && (C5.c.x > C7.c.x - C7.r)){
+      if((C5.c.y < C7.c.y + C7.r) && (C5.c.y > C7.c.y - C7.r)){
+         C5.activo=0;
+      }
+   }
+   if((C5.c.x < C8.c.x + C8.r) && (C5.c.x > C8.c.x - C8.r)){
+      if((C5.c.y < C8.c.y + C8.r) && (C5.c.y > C8.c.y - C8.r)){
+         C5.activo=0;
+      }
+   }
+   if((C5.c.x < C9.c.x + C9.r) && (C5.c.x > C9.c.x - C9.r)){
+      if((C5.c.y < C9.c.y + C9.r) && (C5.c.y > C9.c.y - C9.r)){
+         C5.activo=0;
+      }
+   }
+   if((C5.c.x < C10.c.x + C10.r) && (C5.c.x > C10.c.x - C10.r)){
+      if((C5.c.y < C10.c.y + C10.r) && (C5.c.y > C10.c.y - C10.r)){
+         C5.activo=0;
+      }
+   }
+//-----------------------------------------------------------------------------
+  if((time%200)==0)
     { C6.c.x+=DeltaX6;
       C6.c.y+=DeltaY6;
       if(C6.c.x+C6.r>10)
@@ -256,12 +450,53 @@ void Animar(void)
       if(C6.c.y-C6.r<-10)
          DeltaY6*=-1; 
     }
-    if (((C6.c.x < C1.c.x + C1.r) && (C6.c.x > C1.c.x - C1.r)) || ((C6.c.x < C2.c.x + C2.r) && (C6.c.x > C2.c.x - C2.r)) || ((C6.c.x < C3.c.x + C3.r) && (C6.c.x > C3.c.x - C3.r)) || ((C6.c.x < C5.c.x + C5.r) && (C6.c.x > C5.c.x - C5.r)) || ((C6.c.x < C4.c.x + C4.r) && (C6.c.x > C4.c.x - C4.r)) || ((C6.c.x < C7.c.x + C7.r) && (C6.c.x > C7.c.x - C7.r)) || ((C6.c.x < C8.c.x + C8.r) && (C6.c.x > C8.c.x - C8.r)) || ((C6.c.x < C9.c.x + C9.r) && (C6.c.x > C9.c.x - C9.r)) || ((C6.c.x < C10.c.x + C10.r) && (C6.c.x > C10.c.x - C10.r))){
-      if (((C6.c.y < C1.c.y + C1.r) && (C6.c.y > C1.c.y - C1.r)) || ((C6.c.y < C2.c.y + C2.r) && (C6.c.y > C2.c.y - C2.r)) || ((C6.c.y < C3.c.y + C3.r) && (C6.c.y > C3.c.y - C3.r)) || ((C6.c.y < C5.c.y + C5.r) && (C6.c.y > C5.c.y - C5.r)) || ((C6.c.y < C4.c.y + C4.r) && (C6.c.y > C4.c.y - C4.r)) || ((C6.c.y < C7.c.y + C7.r) && (C6.c.y > C7.c.y - C7.r)) || ((C6.c.y < C8.c.y + C8.r) && (C6.c.y > C8.c.y - C8.r)) || ((C6.c.y < C9.c.y + C9.r) && (C6.c.y > C9.c.y - C9.r)) || ((C6.c.y < C10.c.y + C10.r) && (C6.c.y > C10.c.y - C10.r))){
+    if ((C6.c.x < C1.c.x + C1.r) && (C6.c.x > C1.c.x - C1.r)){
+      if ((C6.c.y < C1.c.y + C1.r) && (C6.c.y > C1.c.y - C1.r)){
          C6.activo = 0;
       }
    }
-  if((time%25)==0)
+   if((C6.c.x < C2.c.x + C2.r) && (C6.c.x > C2.c.x - C2.r)){
+      if((C6.c.y < C2.c.y + C2.r) && (C6.c.y > C2.c.y - C2.r)){
+         C6.activo=0;
+      }
+   }
+   if((C6.c.x < C3.c.x + C3.r) && (C6.c.x > C3.c.x - C3.r)){
+      if((C6.c.y < C3.c.y + C3.r) && (C6.c.y > C3.c.y - C3.r)){
+         C6.activo=0;
+      }
+   }
+   if((C6.c.x < C5.c.x + C5.r) && (C6.c.x > C5.c.x - C5.r)){
+      if((C6.c.y < C5.c.y + C5.r) && (C6.c.y > C5.c.y - C5.r)){
+         C6.activo=0;
+      }
+   }
+   if((C6.c.x < C4.c.x + C4.r) && (C6.c.x > C4.c.x - C4.r)){
+      if((C6.c.y < C4.c.y + C4.r) && (C6.c.y > C4.c.y - C4.r)){
+         C6.activo=0;
+      }
+   }
+   if((C6.c.x < C7.c.x + C7.r) && (C6.c.x > C7.c.x - C7.r)){
+      if((C6.c.y < C7.c.y + C7.r) && (C6.c.y > C7.c.y - C7.r)){
+         C6.activo=0;
+      }
+   }
+   if((C6.c.x < C8.c.x + C8.r) && (C6.c.x > C8.c.x - C8.r)){
+      if((C6.c.y < C8.c.y + C8.r) && (C6.c.y > C8.c.y - C8.r)){
+         C6.activo=0;
+      }
+   }
+   if((C6.c.x < C9.c.x + C9.r) && (C6.c.x > C9.c.x - C9.r)){
+      if((C6.c.y < C9.c.y + C9.r) && (C6.c.y > C9.c.y - C9.r)){
+         C6.activo=0;
+      }
+   }
+   if((C6.c.x < C10.c.x + C10.r) && (C6.c.x > C10.c.x - C10.r)){
+      if((C6.c.y < C10.c.y + C10.r) && (C6.c.y > C10.c.y - C10.r)){
+         C6.activo=0;
+      }
+   }
+//-----------------------------------------------------------------------------
+  if((time%200)==0)
     { C7.c.x+=DeltaX7;
       C7.c.y+=DeltaY7;
       if(C7.c.x+C7.r>10)
@@ -273,12 +508,53 @@ void Animar(void)
       if(C7.c.y-C7.r<-10)
          DeltaY7*=-1; 
     }
-    if (((C7.c.x < C1.c.x + C1.r) && (C7.c.x > C1.c.x - C1.r)) || ((C7.c.x < C2.c.x + C2.r) && (C7.c.x > C2.c.x - C2.r)) || ((C7.c.x < C3.c.x + C3.r) && (C7.c.x > C3.c.x - C3.r)) || ((C7.c.x < C5.c.x + C5.r) && (C7.c.x > C5.c.x - C5.r)) || ((C7.c.x < C6.c.x + C6.r) && (C7.c.x > C6.c.x - C6.r)) || ((C7.c.x < C4.c.x + C4.r) && (C7.c.x > C4.c.x - C4.r)) || ((C7.c.x < C8.c.x + C8.r) && (C7.c.x > C8.c.x - C8.r)) || ((C7.c.x < C9.c.x + C9.r) && (C7.c.x > C9.c.x - C9.r)) || ((C7.c.x < C10.c.x + C10.r) && (C7.c.x > C10.c.x - C10.r))){
-      if (((C7.c.y < C1.c.y + C1.r) && (C7.c.y > C1.c.y - C1.r)) || ((C7.c.y < C2.c.y + C2.r) && (C7.c.y > C2.c.y - C2.r)) || ((C7.c.y < C3.c.y + C3.r) && (C7.c.y > C3.c.y - C3.r)) || ((C7.c.y < C5.c.y + C5.r) && (C7.c.y > C5.c.y - C5.r)) || ((C7.c.y < C6.c.y + C6.r) && (C7.c.y > C6.c.y - C6.r)) || ((C7.c.y < C4.c.y + C4.r) && (C7.c.y > C4.c.y - C4.r)) || ((C7.c.y < C8.c.y + C8.r) && (C7.c.y > C8.c.y - C8.r)) || ((C7.c.y < C9.c.y + C9.r) && (C7.c.y > C9.c.y - C9.r)) || ((C7.c.y < C10.c.y + C10.r) && (C7.c.y > C10.c.y - C10.r))){
+    if ((C7.c.x < C1.c.x + C1.r) && (C7.c.x > C1.c.x - C1.r)){
+      if ((C7.c.y < C1.c.y + C1.r) && (C7.c.y > C1.c.y - C1.r)){
          C7.activo = 0;
       }
    }
-  if((time%27)==0)
+   if((C7.c.x < C2.c.x + C2.r) && (C7.c.x > C2.c.x - C2.r)){
+      if((C7.c.y < C2.c.y + C2.r) && (C7.c.y > C2.c.y - C2.r)){
+         C7.activo=0;
+      }
+   }
+   if((C7.c.x < C3.c.x + C3.r) && (C7.c.x > C3.c.x - C3.r)){
+      if((C7.c.y < C3.c.y + C3.r) && (C7.c.y > C3.c.y - C3.r)){
+         C7.activo=0;
+      }
+   }
+   if((C7.c.x < C5.c.x + C5.r) && (C7.c.x > C5.c.x - C5.r)){
+      if((C7.c.y < C5.c.y + C5.r) && (C7.c.y > C5.c.y - C5.r)){
+         C7.activo=0;
+      }
+   }
+   if((C7.c.x < C6.c.x + C6.r) && (C7.c.x > C6.c.x - C6.r)){
+      if((C7.c.y < C6.c.y + C6.r) && (C7.c.y > C6.c.y - C6.r)){
+         C7.activo=0;
+      }
+   }
+   if((C7.c.x < C4.c.x + C4.r) && (C7.c.x > C4.c.x - C4.r)){
+      if((C7.c.y < C4.c.y + C4.r) && (C7.c.y > C4.c.y - C4.r)){
+         C7.activo=0;
+      }
+   }
+   if((C7.c.x < C8.c.x + C8.r) && (C7.c.x > C8.c.x - C8.r)){
+      if((C7.c.y < C8.c.y + C8.r) && (C7.c.y > C8.c.y - C8.r)){
+         C7.activo=0;
+      }
+   }
+   if((C7.c.x < C9.c.x + C9.r) && (C7.c.x > C9.c.x - C9.r)){
+      if((C7.c.y < C9.c.y + C9.r) && (C7.c.y > C9.c.y - C9.r)){
+         C7.activo=0;
+      }
+   }
+   if((C7.c.x < C10.c.x + C10.r) && (C7.c.x > C10.c.x - C10.r)){
+      if((C7.c.y < C10.c.y + C10.r) && (C7.c.y > C10.c.y - C10.r)){
+         C7.activo=0;
+      }
+   }
+//-----------------------------------------------------------------------------
+  if((time%200)==0)
     { C8.c.x+=DeltaX8;
       C8.c.y+=DeltaY8;
       if(C8.c.x+C8.r>10)
@@ -290,12 +566,52 @@ void Animar(void)
       if(C8.c.y-C8.r<-10)
          DeltaY8*=-1; 
     }
-    if (((C8.c.x < C1.c.x + C1.r) && (C8.c.x > C1.c.x - C1.r)) || ((C8.c.x < C2.c.x + C2.r) && (C8.c.x > C2.c.x - C2.r)) || ((C8.c.x < C3.c.x + C3.r) && (C8.c.x > C3.c.x - C3.r)) || ((C8.c.x < C5.c.x + C5.r) && (C8.c.x > C5.c.x - C5.r)) || ((C8.c.x < C6.c.x + C6.r) && (C8.c.x > C6.c.x - C6.r)) || ((C8.c.x < C7.c.x + C7.r) && (C8.c.x > C7.c.x - C7.r)) || ((C8.c.x < C4.c.x + C4.r) && (C8.c.x > C4.c.x - C4.r)) || ((C8.c.x < C9.c.x + C9.r) && (C8.c.x > C9.c.x - C9.r)) || ((C8.c.x < C10.c.x + C10.r) && (C8.c.x > C10.c.x - C10.r))){
-      if (((C8.c.y < C1.c.y + C1.r) && (C8.c.y > C1.c.y - C1.r)) || ((C8.c.y < C2.c.y + C2.r) && (C8.c.y > C2.c.y - C2.r)) || ((C8.c.y < C3.c.y + C3.r) && (C8.c.y > C3.c.y - C3.r)) || ((C8.c.y < C5.c.y + C5.r) && (C8.c.y > C5.c.y - C5.r)) || ((C8.c.y < C6.c.y + C6.r) && (C8.c.y > C6.c.y - C6.r)) || ((C8.c.y < C7.c.y + C7.r) && (C8.c.y > C7.c.y - C7.r)) || ((C8.c.y < C4.c.y + C4.r) && (C8.c.y > C4.c.y - C4.r)) || ((C8.c.y < C9.c.y + C9.r) && (C8.c.y > C9.c.y - C9.r)) || ((C8.c.y < C10.c.y + C10.r) && (C8.c.y > C10.c.y - C10.r))){
+    if ((C8.c.x < C1.c.x + C1.r) && (C8.c.x > C1.c.x - C1.r)){
+      if ((C8.c.y < C1.c.y + C1.r) && (C8.c.y > C1.c.y - C1.r)){
          C8.activo = 0;
       }
    }
-  if((time%30)==0)
+   if((C8.c.x < C2.c.x + C2.r) && (C8.c.x > C2.c.x - C2.r)){
+      if((C8.c.y < C2.c.y + C2.r) && (C8.c.y > C2.c.y - C2.r)){
+         C8.activo=0;
+      }
+   }
+   if((C8.c.x < C3.c.x + C3.r) && (C8.c.x > C3.c.x - C3.r)){
+      if((C8.c.y < C3.c.y + C3.r) && (C8.c.y > C3.c.y - C3.r)){
+         C8.activo=0;
+      }
+   }
+   if((C8.c.x < C5.c.x + C5.r) && (C8.c.x > C5.c.x - C5.r)){
+      if((C8.c.y < C5.c.y + C5.r) && (C8.c.y > C5.c.y - C5.r)){
+         C8.activo=0;
+      }
+   }
+   if((C8.c.x < C6.c.x + C6.r) && (C8.c.x > C6.c.x - C6.r)){
+      if((C8.c.y < C6.c.y + C6.r) && (C8.c.y > C6.c.y - C6.r)){
+         C8.activo=0;
+      }
+   }
+   if((C8.c.x < C7.c.x + C7.r) && (C8.c.x > C7.c.x - C7.r)){
+      if((C8.c.y < C7.c.y + C7.r) && (C8.c.y > C7.c.y - C7.r)){
+         C8.activo=0;
+      }
+   }
+   if((C8.c.x < C4.c.x + C4.r) && (C8.c.x > C4.c.x - C4.r)){
+      if((C8.c.y < C4.c.y + C4.r) && (C8.c.y > C4.c.y - C4.r)){
+         C8.activo=0;
+      }
+   }
+   if((C8.c.x < C9.c.x + C9.r) && (C8.c.x > C9.c.x - C9.r)){
+      if((C8.c.y < C9.c.y + C9.r) && (C8.c.y > C9.c.y - C9.r))
+      C8.activo=0;
+   }
+   if((C8.c.x < C10.c.x + C10.r) && (C8.c.x > C10.c.x - C10.r)){
+      if((C8.c.y < C10.c.y + C10.r) && (C8.c.y > C10.c.y - C10.r)){
+         C8.activo=0;
+      }
+   }
+//-----------------------------------------------------------------------------
+  if((time%300)==0)
     { C9.c.x+=DeltaX9;
       C9.c.y+=DeltaY9;
       if(C9.c.x+C9.r>10)
@@ -307,12 +623,53 @@ void Animar(void)
       if(C9.c.y-C9.r<-10)
          DeltaY9*=-1; 
     }
-    if (((C9.c.x < C1.c.x + C1.r) && (C9.c.x > C1.c.x - C1.r)) || ((C9.c.x < C2.c.x + C2.r) && (C9.c.x > C2.c.x - C2.r)) || ((C9.c.x < C3.c.x + C3.r) && (C9.c.x > C3.c.x - C3.r)) || ((C9.c.x < C5.c.x + C5.r) && (C9.c.x > C5.c.x - C5.r)) || ((C9.c.x < C6.c.x + C6.r) && (C9.c.x > C6.c.x - C6.r)) || ((C9.c.x < C7.c.x + C7.r) && (C9.c.x > C7.c.x - C7.r)) || ((C9.c.x < C8.c.x + C8.r) && (C9.c.x > C8.c.x - C8.r)) || ((C9.c.x < C4.c.x + C4.r) && (C9.c.x > C4.c.x - C4.r)) || ((C9.c.x < C10.c.x + C10.r) && (C9.c.x > C10.c.x - C10.r))){
-      if (((C9.c.y < C1.c.y + C1.r) && (C9.c.y > C1.c.y - C1.r)) || ((C9.c.y < C2.c.y + C2.r) && (C9.c.y > C2.c.y - C2.r)) || ((C9.c.y < C3.c.y + C3.r) && (C9.c.y > C3.c.y - C3.r)) || ((C9.c.y < C5.c.y + C5.r) && (C9.c.y > C5.c.y - C5.r)) || ((C9.c.y < C6.c.y + C6.r) && (C9.c.y > C6.c.y - C6.r)) || ((C9.c.y < C7.c.y + C7.r) && (C9.c.y > C7.c.y - C7.r)) || ((C9.c.y < C8.c.y + C8.r) && (C9.c.y > C8.c.y - C8.r)) || ((C9.c.y < C4.c.y + C4.r) && (C9.c.y > C4.c.y - C4.r)) || ((C9.c.y < C10.c.y + C10.r) && (C9.c.y > C10.c.y - C10.r))){
+    if ((C9.c.x < C1.c.x + C1.r) && (C9.c.x > C1.c.x - C1.r)){
+      if ((C9.c.y < C1.c.y + C1.r) && (C9.c.y > C1.c.y - C1.r)){
          C9.activo = 0;
       }
    }
-  if((time%35)==0)
+   if((C9.c.x < C2.c.x + C2.r) && (C9.c.x > C2.c.x - C2.r)){
+      if((C9.c.y < C2.c.y + C2.r) && (C9.c.y > C2.c.y - C2.r)){
+         C9.activo=0;
+      }
+   }
+   if((C9.c.x < C3.c.x + C3.r) && (C9.c.x > C3.c.x - C3.r)){
+      if((C9.c.y < C3.c.y + C3.r) && (C9.c.y > C3.c.y - C3.r)){
+         C9.activo=0;
+      }
+   }
+   if((C9.c.x < C5.c.x + C5.r) && (C9.c.x > C5.c.x - C5.r)){
+      if((C9.c.y < C5.c.y + C5.r) && (C9.c.y > C5.c.y - C5.r)){
+         C9.activo=0;
+      }
+   }
+   if((C9.c.x < C6.c.x + C6.r) && (C9.c.x > C6.c.x - C6.r)){
+      if((C9.c.y < C6.c.y + C6.r) && (C9.c.y > C6.c.y - C6.r)){
+         C9.activo=0;
+      }
+   }
+   if((C9.c.x < C7.c.x + C7.r) && (C9.c.x > C7.c.x - C7.r)){
+      if((C9.c.y < C7.c.y + C7.r) && (C9.c.y > C7.c.y - C7.r)){
+         C9.activo=0;
+      }
+   }
+   if((C9.c.x < C8.c.x + C8.r) && (C9.c.x > C8.c.x - C8.r)){
+      if((C9.c.y < C8.c.y + C8.r) && (C9.c.y > C8.c.y - C8.r)){
+         C9.activo=0;
+      }
+   }
+   if((C9.c.x < C4.c.x + C4.r) && (C9.c.x > C4.c.x - C4.r)){
+      if((C9.c.y < C4.c.y + C4.r) && (C9.c.y > C4.c.y - C4.r)){
+         C9.activo=0;
+      }
+   }
+   if((C9.c.x < C10.c.x + C10.r) && (C9.c.x > C10.c.x - C10.r)){
+      if((C9.c.y < C10.c.y + C10.r) && (C9.c.y > C10.c.y - C10.r)){
+         C9.activo=0;
+      }
+   }
+//-----------------------------------------------------------------------------
+  if((time%300)==0)
     { C10.c.x+=DeltaX10;
       C10.c.y+=DeltaY10;
       if(C10.c.x+C10.r>10)
@@ -324,11 +681,52 @@ void Animar(void)
       if(C10.c.y-C10.r<-10)
          DeltaY10*=-1; 
     }
-    if (((C10.c.x < C1.c.x + C1.r) && (C10.c.x > C1.c.x - C1.r)) || ((C10.c.x < C2.c.x + C2.r) && (C10.c.x > C2.c.x - C2.r)) || ((C10.c.x < C3.c.x + C3.r) && (C10.c.x > C3.c.x - C3.r)) || ((C10.c.x < C5.c.x + C5.r) && (C10.c.x > C5.c.x - C5.r)) || ((C10.c.x < C6.c.x + C6.r) && (C10.c.x > C6.c.x - C6.r)) || ((C10.c.x < C7.c.x + C7.r) && (C10.c.x > C7.c.x - C7.r)) || ((C10.c.x < C8.c.x + C8.r) && (C10.c.x > C8.c.x - C8.r)) || ((C10.c.x < C9.c.x + C9.r) && (C10.c.x > C9.c.x - C9.r)) || ((C10.c.x < C4.c.x + C4.r) && (C10.c.x > C4.c.x - C4.r))){
-      if (((C10.c.y < C1.c.y + C1.r) && (C10.c.y > C1.c.y - C1.r)) || ((C10.c.y < C2.c.y + C2.r) && (C10.c.y > C2.c.y - C2.r)) || ((C10.c.y < C3.c.y + C3.r) && (C10.c.y > C3.c.y - C3.r)) || ((C10.c.y < C5.c.y + C5.r) && (C10.c.y > C5.c.y - C5.r)) || ((C10.c.y < C6.c.y + C6.r) && (C10.c.y > C6.c.y - C6.r)) || ((C10.c.y < C7.c.y + C7.r) && (C10.c.y > C7.c.y - C7.r)) || ((C10.c.y < C8.c.y + C8.r) && (C10.c.y > C8.c.y - C8.r)) || ((C10.c.y < C9.c.y + C9.r) && (C10.c.y > C9.c.y - C9.r)) || ((C10.c.y < C4.c.y + C4.r) && (C10.c.y > C4.c.y - C4.r))){
+    if ((C10.c.x < C1.c.x + C1.r) && (C10.c.x > C1.c.x - C1.r)){
+      if ((C10.c.y < C1.c.y + C1.r) && (C10.c.y > C1.c.y - C1.r)){
          C10.activo = 0;
       }
    }
+   if((C10.c.x < C2.c.x + C2.r) && (C10.c.x > C2.c.x - C2.r)){
+      if((C10.c.y < C2.c.y + C2.r) && (C10.c.y > C2.c.y - C2.r)){
+         C10.activo=0;
+      }
+   }
+   if((C10.c.x < C3.c.x + C3.r) && (C10.c.x > C3.c.x - C3.r)){
+      if((C10.c.y < C3.c.y + C3.r) && (C10.c.y > C3.c.y - C3.r)){
+         C10.activo=0;
+      }
+   }
+   if((C10.c.x < C5.c.x + C5.r) && (C10.c.x > C5.c.x - C5.r)){
+      if((C10.c.y < C5.c.y + C5.r) && (C10.c.y > C5.c.y - C5.r)){
+         C10.activo=0;
+      }
+   }
+   if((C10.c.x < C6.c.x + C6.r) && (C10.c.x > C6.c.x - C6.r)){
+      if((C10.c.y < C6.c.y + C6.r) && (C10.c.y > C6.c.y - C6.r)){
+         C10.activo=0;
+      }
+   }
+   if((C10.c.x < C7.c.x + C7.r) && (C10.c.x > C7.c.x - C7.r)){
+      if((C10.c.y < C7.c.y + C7.r) && (C10.c.y > C7.c.y - C7.r)){
+         C10.activo=0;
+      }
+   }
+   if((C10.c.x < C8.c.x + C8.r) && (C10.c.x > C8.c.x - C8.r)){
+      if((C10.c.y < C8.c.y + C8.r) && (C10.c.y > C8.c.y - C8.r)){
+         C10.activo=0;
+      }
+   }
+   if((C10.c.x < C9.c.x + C9.r) && (C10.c.x > C9.c.x - C9.r)){
+      if((C10.c.y < C9.c.y + C9.r) && (C10.c.y > C9.c.y - C9.r)){
+         C10.activo=0;
+      }
+   }
+   if((C10.c.x < C4.c.x + C4.r) && (C10.c.x > C4.c.x - C4.r)){
+      if((C10.c.y < C4.c.y + C4.r) && (C10.c.y > C4.c.y - C4.r)){
+         C10.activo=0;
+      }
+   }
+   //-----------------------------------------------------------------------------
   if(time>1000000000)
      time=0;
   time++; 
@@ -368,18 +766,18 @@ void circulos(){
   
   C2.activo = 1;
   C2.c.x=(rand() % 10);
-  C2.c.y=(rand() % 10);
+  C2.c.y=((rand() % 10)*-1);
   C2.r=0.5;
-  DeltaX2=(rand() % 101)*0.01;
-  DeltaY2=(rand() % 101)*0.01;  
+  DeltaX2=((rand() % 101)*0.01);
+  DeltaY2=((rand() % 101)*0.01)*-1;  
   
 
   C3.activo = 1;
   C3.c.x=(rand() % 10);
-  C3.c.y=(rand() % 10);
+  C3.c.y=((rand() % 10)*-1);
   C3.r=0.5;
-  DeltaX3=(rand() % 101)*0.01;
-  DeltaY3=(rand() % 101)*0.01;
+  DeltaX3=((rand() % 101)*0.01);
+  DeltaY3=((rand() % 101)*0.01)*-1;
 
   C4.activo = 1;
   C4.c.x=(rand() % 10);
@@ -389,46 +787,46 @@ void circulos(){
   DeltaY4=(rand() % 101)*0.01;
 
   C5.activo=1;
-  C5.c.x=-(rand() % 10);
+  C5.c.x=-((rand() % 10)*-1);
   C5.c.y=(rand() % 10);
   C5.r=0.5;
-  DeltaX5=(rand() % 101)*0.01;
+  DeltaX5=((rand() % 101)*0.01)*-1;
   DeltaY5=(rand() % 101)*0.01;
 
   C6.activo=1;
-  C6.c.x=(rand() % 10);
+  C6.c.x=((rand() % 10)*-1);
   C6.c.y=(rand() % 10);
   C6.r=0.5;
-  DeltaX6=(rand() % 101)*0.01;
+  DeltaX6=((rand() % 101)*0.01)*-1;
   DeltaY6=(rand() % 101)*0.01;
 
   C7.activo=1;
-  C7.c.x=(rand() % 10);
+  C7.c.x=((rand() % 10)*-1);
   C7.c.y=(rand() % 10);
   C7.r=0.5;
-  DeltaX7=(rand() % 101)*0.01;
+  DeltaX7=((rand() % 101)*0.01)*-1;
   DeltaY7=(rand() % 101)*0.01;
 
   C8.activo=1;
-  C8.c.x=(rand() % 10);
-  C8.c.y=(rand() % 10);
+  C8.c.x=((rand() % 10)*-1);
+  C8.c.y=((rand() % 10)*-1);
   C8.r=0.5;
-  DeltaX8=(rand() % 101)*0.01;
-  DeltaY8=(rand() % 101)*0.01;
+  DeltaX8=((rand() % 101)*0.01)*-1;
+  DeltaY8=((rand() % 101)*0.01)*-1;
 
   C9.activo=1;
-  C9.c.x=1.0;
-  C9.c.y=9.0;
+  C9.c.x=((rand() % 10)*-1);
+  C9.c.y=((rand() % 10)*-1);
   C9.r=0.5;
-  DeltaX9=(rand() % 101)*0.01;
-  DeltaY9=(rand() % 101)*0.01;
+  DeltaX9=((rand() % 101)*0.01)*-1;
+  DeltaY9=((rand() % 101)*0.01)*-1;
 
   C10.activo=1;
-  C10.c.x=3.0;
-  C10.c.y=6.0;
+  C10.c.x=(rand() % 10);
+  C10.c.y=((rand() % 10)*-1);
   C10.r=0.5;
-  DeltaX10=(rand() % 101)*0.01;
-  DeltaY10=(rand() % 101)*0.01;
+  DeltaX10=((rand() % 101)*0.01)*1;
+  DeltaY10=((rand() % 101)*0.01)*-1;
 }
 
 
@@ -446,11 +844,4 @@ void Circulo(CIRCULO ci)
        glVertex2f(x,y);
       }
   glEnd(); 
-}
-void Linea(LINEA L)
-{ AsignaColor(L.color);
-  glBegin(GL_LINES);
-  glVertex2f(L.ini.x,L.ini.y);
-  glVertex2f(L.fin.x,L.fin.y);
-  glEnd();
 }
